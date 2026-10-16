@@ -6,6 +6,10 @@ using HelloBrutal;
 if (!Glfw.Init())
     throw new Exception("Failed to initialize GLFW");
 
+// On macOS, locate an installed Vulkan loader/driver so no environment setup is needed.
+// No-op on other platforms and when a loader is already configured.
+VulkanRuntime.Discover();
+
 // Prefer Vulkan wherever the platform provides a loader/driver (including macOS via a
 // translation layer such as MoltenVK). Only fall back to OpenGL where it does not.
 var useOpenGl = !Glfw.VulkanSupported();
@@ -62,4 +66,5 @@ finally
 }
 
 static string VulkanLoaderHint() =>
-    "Ensure a Vulkan driver/loader is installed and reachable (VK_ICD_FILENAMES / library search path).";
+    "Ensure a Vulkan loader/driver is installed. The app searches VULKAN_SDK, ~/VulkanSDK and common "
+    + "package-manager paths; set VK_DRIVER_FILES and DYLD_LIBRARY_PATH to point at an installation directly.";
