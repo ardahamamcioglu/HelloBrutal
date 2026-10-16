@@ -30,3 +30,5 @@ This project is an example of using **BRUTAL**, the free and open source C# game
 
 BRUTAL is Copyright (c) 2024 Ahwoo Limited and is used here under the **BRUTAL License v1.0** (an MIT-based licence
 with attribution requirements). See `LICENSE.txt` in the BRUTAL repository for the full terms.
+
+![alt text](LOGO_BRUTAL.png)
