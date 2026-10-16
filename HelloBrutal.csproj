@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Ahwoo.BRUTAL.Core" Version="2026.10.1" />
+    <PackageReference Include="Ahwoo.BRUTAL.Glfw" Version="2026.10.4" />
+    <PackageReference Include="Ahwoo.BRUTAL.Gltf" Version="2026.10.2" />
+    <PackageReference Include="Ahwoo.BRUTAL.NativeFileDialog" Version="2026.10.2" />
+    <PackageReference Include="Ahwoo.BRUTAL.OpenGl" Version="2026.10.1" />
+    <PackageReference Include="Ahwoo.BRUTAL.Render.Mesh" Version="2026.10.1" />
+    <PackageReference Include="Ahwoo.BRUTAL.ShaderC" Version="2026.10.2" />
+    <PackageReference Include="Ahwoo.BRUTAL.Vulkan" Version="2026.10.2" />
+    <PackageReference Include="Ahwoo.BRUTAL.Vulkan.Abstractions" Version="2026.10.2" />
+  </ItemGroup>
+
+</Project>
