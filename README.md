@@ -1,13 +1,15 @@
 # HelloBrutal
 
 A minimal example project built on the [BRUTAL framework](https://github.com/ahwootech/BRUTAL). It opens a window and
-renders a glTF/GLB mesh with a simple orbit camera. Rendering uses OpenGL 3.3 on macOS and Vulkan everywhere else.
+renders a glTF/GLB mesh with a simple orbit camera. Rendering uses Vulkan 1.3 where it is available and
+falls back to OpenGL 3.3 where it isn't.
 
 ## Requirements
 
 - [.NET 10 SDK](https://dotnet.microsoft.com/download)
-- Windows/Linux: a Vulkan 1.3 capable GPU with current drivers
-- macOS: runs on the OpenGL path, no extra setup
+- Vulkan 1.3 capable GPU with current drivers, where a Vulkan loader is present
+- Otherwise an OpenGL 3.3 capable driver (for example macOS runs on OpenGL unless a Vulkan
+  translation layer such as MoltenVK is installed)
 
 ## Run
 
