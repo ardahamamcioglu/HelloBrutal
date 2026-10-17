@@ -4,29 +4,22 @@ using Brutal.Numerics;
 using HelloBrutal;
 
 if (!Glfw.Init())
+{
     throw new Exception("Failed to initialize GLFW");
+}
 
 // On macOS, locate an installed Vulkan loader/driver so no environment setup is needed.
 // No-op on other platforms and when a loader is already configured.
 VulkanRuntime.Discover();
 
+if(!Glfw.VulkanSupported())
+{
+	throw new Exception("Failed to initialize Vulkan");
+}
 // Prefer Vulkan wherever the platform provides a loader/driver (including macOS via a
 // translation layer such as MoltenVK). Only fall back to OpenGL where it does not.
-var useOpenGl = !Glfw.VulkanSupported();
 
-if (useOpenGl)
-{
-    Console.WriteLine("Vulkan is not available; falling back to the OpenGL renderer.");
-    Glfw.WindowHint(GlfwWindowHint.ClientApi, Glfw.Constants.GLFW_OPENGL_API);
-    Glfw.WindowHint(GlfwWindowHint.ContextVersionMajor, 3);
-    Glfw.WindowHint(GlfwWindowHint.ContextVersionMinor, 3);
-    Glfw.WindowHint(GlfwWindowHint.OpenGlProfile, Glfw.Constants.GLFW_OPENGL_CORE_PROFILE);
-    Glfw.WindowHint(GlfwWindowHint.OpenGlForwardCompat, 1);
-}
-else
-{
-    Glfw.WindowHint(GlfwWindowHint.ClientApi, Glfw.Constants.GLFW_NO_API);
-}
+Glfw.WindowHint(GlfwWindowHint.ClientApi, Glfw.Constants.GLFW_NO_API);
 
 NativeFileDialog.Initialize();
 
@@ -40,7 +33,7 @@ using var window = Glfw.CreateWindow(
 
 try
 {
-    using var viewer = new MeshViewer(window, useOpenGl);
+    using var viewer = new MeshViewer(window);
 
     while (!window.ShouldClose)
     {
@@ -52,11 +45,8 @@ catch (Exception ex)
 {
     Console.Error.WriteLine();
     Console.Error.WriteLine(ex);
-    if (!useOpenGl)
-    {
-        Console.Error.WriteLine();
-        Console.Error.WriteLine(VulkanLoaderHint());
-    }
+    Console.Error.WriteLine();
+    Console.Error.WriteLine(VulkanLoaderHint());
     throw;
 }
 finally

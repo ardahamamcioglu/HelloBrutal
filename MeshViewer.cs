@@ -14,10 +14,10 @@ public sealed class MeshViewer : IDisposable
     private bool _panning;
     private double2 _lastCursor;
 
-    public MeshViewer(GlfwWindow window, bool useOpenGl)
+    public MeshViewer(GlfwWindow window)
     {
         _window = window;
-        _renderer = useOpenGl ? new OpenGlRenderer(window) : new VulkanRenderer(window);
+        _renderer = new VulkanRenderer(window);
         _window.OnScroll += (_, offset) => _camera.Zoom(offset.Y);
 
         Console.WriteLine("Controls: [Tab] import a model, left-drag to orbit, shift+left-drag to pan, scroll to zoom, [Esc] to quit.");

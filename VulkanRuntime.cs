@@ -2,28 +2,13 @@ using System.Runtime.InteropServices;
 
 namespace HelloBrutal;
 
-/// <summary>
-/// Best-effort discovery of an installed Vulkan loader and driver, so the app can use Vulkan
-/// without the user sourcing the Vulkan SDK's setup-env.sh.
-///
-/// This is macOS-only: Windows ships vulkan-1.dll and Linux provides libvulkan.so.1 in the
-/// standard library paths, so both are found without help, whereas macOS has no Vulkan loader or
-/// driver in a default search path.
-///
-/// The loader is preloaded by absolute path, so GLFW's later lookup by bare name resolves to the
-/// already-loaded image, and VK_DRIVER_FILES is pointed at a driver manifest (read by the loader
-/// at instance-creation time, so setting it in-process takes effect).
-///
-/// An existing configuration is left untouched, and nothing happens when nothing is found --
-/// the caller then falls back to OpenGL.
-/// </summary>
 internal static class VulkanRuntime
 {
     private const string LoaderFileName = "libvulkan.1.dylib";
 
     public static void Discover()
     {
-        if (!OperatingSystem.IsMacOS())
+        if (Brutal.Platform.CurrentFamily != Brutal.Platform.Family.MacOS)
             return;
 
         // The environment already names a driver (e.g. setup-env.sh was sourced): leave it alone.
@@ -47,7 +32,7 @@ internal static class VulkanRuntime
             }
             catch (Exception)
             {
-                // Best effort only; if this fails GLFW reports Vulkan unavailable and we use OpenGL.
+
             }
         }
     }
