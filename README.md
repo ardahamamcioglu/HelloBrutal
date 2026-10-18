@@ -33,4 +33,4 @@ This project is an example of using **BRUTAL**, the free and open source C# game
 BRUTAL is Copyright (c) 2024 Ahwoo Limited and is used here under the **BRUTAL License v1.0** (an MIT-based licence
 with attribution requirements). See `LICENSE.txt` in the BRUTAL repository for the full terms.
 
-![alt text](LOGO_BRUTAL.png)
+<picture> <source media="(prefers-color-scheme: dark)" srcset="./docs/branding/LOGO_BRUTAL_WHT.png"> <source media="(prefers-color-scheme: light)" srcset="./docs/branding/LOGO_BRUTAL_BLK.png"> <img alt="Fallback image description" src="./docs/branding/LOGO_BRUTAL_BLK.png"> </picture>

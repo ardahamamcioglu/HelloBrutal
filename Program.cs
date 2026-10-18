@@ -9,7 +9,7 @@ if (!Glfw.Init())
 }
 
 // On macOS, locate an installed Vulkan loader/driver so no environment setup is needed.
-// No-op on other platforms and when a loader is already configured.
+// This might be unnecessary later. MoltenVK will be bundled with the application.
 VulkanRuntime.Discover();
 
 if(!Glfw.VulkanSupported())
